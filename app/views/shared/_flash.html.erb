@@ -1,0 +1,7 @@
+<% if flash.any? %>
+  <% flash.each do |msg_type, msg| %>
+    <section class="container-fluid">
+      <div class="alert alert-<%= msg_type %> flash-message"><%= msg %></div>
+    </section>
+  <% end %>
+<% end %>

@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   
   root 'high_voltage/pages#show', id: 'home'
   get '/signup' => 'users#new'
+  post '/signin' => 'sessions#create'
+  delete '/signout' => 'sessions#destroy'
+  
   
   resources :users, only: [:create, :show]
   

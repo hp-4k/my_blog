@@ -7,7 +7,7 @@
   </div>
   
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-md-5">
       <p>Welcome to the blogger app!</p>  
       <p>On this website you can:</p>
       <ul>
@@ -18,9 +18,26 @@
       </ul>
     </div>
     
-    <div class="col-xs-6 text-center">
-      <p>Login form goes here</p>
-      <p>Don't have an account? <%= link_to 'Sign up!', signup_path %></p>
+    <div class="col-md-2"></div>
+    
+    <div class="col-md-5 text-center">
+      <%= form_tag signin_path do %>
+        <div class="form-group">
+          <%= label_tag 'session[email]', 'Email' %>
+          <%= text_field_tag 'session[email]', nil, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= label_tag 'session[password]', 'Password' %>
+          <%= password_field_tag 'session[password]', nil, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= submit_tag 'Sign in', class: 'btn btn-primary' %>
+        </div>
+        
+      <% end %>
+      <p>Don't have an account? <%= link_to 'Sign up.', signup_path %></p>
     </div>
   </div>
       

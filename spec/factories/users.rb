@@ -12,4 +12,12 @@ FactoryGirl.define do
     password 'short'
     password_confirmation 'does_not_match'
   end
+  
+  factory :other_user, class: User do
+    name "foobar2"
+    email "foo2@bar.baz"
+    password "foobar2"
+    password_confirmation "foobar2"
+  end
+  
 end

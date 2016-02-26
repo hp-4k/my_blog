@@ -11,6 +11,12 @@
 
 <body>
 
+  <% if logged_in? %>
+    <%= render 'shared/topbar' %>
+  <% end %>
+  
+  <%= render 'shared/flash' %>
+
   <%= yield %>
 
 </body>
