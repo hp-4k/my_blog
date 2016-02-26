@@ -19,7 +19,7 @@ RSpec.describe SessionsController, type: :controller do
       end
       
       it "redirects to user page" do
-        expect(response).to redirect_to @user
+        expect(response).to redirect_to articles_for_user_path(@user.slug)
       end
       
     end

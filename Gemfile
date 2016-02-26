@@ -38,6 +38,9 @@ gem "twitter-bootstrap-rails"
 # Use friendly_id for pretty URLs
 gem 'friendly_id', '~> 5.1.0'
 
+# Use redcarpet for parsing Markdown
+gem 'redcarpet', '~> 2.3.0'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

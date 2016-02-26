@@ -21,21 +21,27 @@ RSpec.describe UsersController, type: :controller do
     context "with valid data" do
       
       before :each do
-        post :create, user: FactoryGirl.attributes_for(:user)
+        post :create, user: attributes_for(:user)
       end
       
       it "creates a new user" do
         expect(User.count).to eq 1
       end
       
-      it "logs the user in"
+      it "logs the user in" do
+        expect(logged_in?).to be true
+      end
+      
+      it "redirects to user's articles page" do
+        expect(response).to redirect_to articles_for_user_url(User.last.slug)
+      end
       
     end
     
     context "with invalid data" do
 
       before :each do
-        post :create, user: FactoryGirl.attributes_for(:invalid_user)
+        post :create, user: attributes_for(:invalid_user)
       end
 
       it "renders the :new view" do
