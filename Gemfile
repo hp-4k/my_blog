@@ -35,6 +35,9 @@ gem 'high_voltage', '~> 2.4.0'
 # Use Twitter Bootstrap
 gem "twitter-bootstrap-rails"
 
+# Use friendly_id for pretty URLs
+gem 'friendly_id', '~> 5.1.0'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
