@@ -24,7 +24,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+
+# User factory_girl as fixtures replacement
+gem 'factory_girl_rails', "~> 4.0"
 
 # Use Unicorn as the app server
 # gem 'unicorn'
