@@ -5,3 +5,17 @@
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require twitter-bootstrap-static/fontawesome
   */
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.home_page {
+  font-size: 20px;
+  
+  h1 {
+    font-size: 60px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+  }
+}
