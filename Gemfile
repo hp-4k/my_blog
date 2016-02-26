@@ -29,8 +29,11 @@ gem 'bcrypt', '~> 3.1.7'
 # Use factory_girl as fixtures replacement
 gem 'factory_girl_rails', "~> 4.0"
 
-# User high_voltage for static pages
+# Use high_voltage for static pages
 gem 'high_voltage', '~> 2.4.0'
+
+# Use Twitter Bootstrap
+gem "twitter-bootstrap-rails"
 
 # Use Unicorn as the app server
 # gem 'unicorn'
