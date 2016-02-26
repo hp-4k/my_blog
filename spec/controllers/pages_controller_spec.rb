@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe HighVoltage::PagesController, type: :controller do
   
-  describe "GET to /pages/home" do
+  describe "GET /pages/home" do
     
     before do
       get :show, id: 'home'

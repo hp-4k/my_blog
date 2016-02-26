@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   
   root 'high_voltage/pages#show', id: 'home'
+  get '/signup' => 'users#new'
+  
+  resources :users, only: [:create, :show]
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
