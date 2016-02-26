@@ -26,8 +26,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# User factory_girl as fixtures replacement
+# Use factory_girl as fixtures replacement
 gem 'factory_girl_rails', "~> 4.0"
+
+# User high_voltage for static pages
+gem 'high_voltage', '~> 2.4.0'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
