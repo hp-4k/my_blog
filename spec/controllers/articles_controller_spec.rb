@@ -39,7 +39,7 @@ RSpec.describe ArticlesController, type: :controller do
     before :each do
       @user = create(:user)
       @article = @user.articles.create(attributes_for(:article))
-      get :show, id: @article
+      get :show, id: @article.slug # use pretty urls
     end
     
     it "assigns the specified article to @article" do

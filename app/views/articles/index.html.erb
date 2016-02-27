@@ -7,7 +7,7 @@
   
   <% @articles.each do |article| %>
     <h2><%= article.title %> <small><%= time_ago_in_words(article.created_at) %> ago</small></h2>
-    <p><%= article.preview %> <%= link_to 'Read more', '#' %></p>
+    <p><%= article.preview %> <%= link_to 'Read more', article_path(article.slug) %></p>
   <% end %>
   
 </div>
