@@ -7,6 +7,8 @@ class Article < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
   validates :content, presence: true
   
+  default_scope { order(created_at: :desc) }
+  
   def html_content
     renderer = Redcarpet::Render::HTML.new(filter_html: true)
     markdown = Redcarpet::Markdown.new(renderer, autolink: true, tables: true)

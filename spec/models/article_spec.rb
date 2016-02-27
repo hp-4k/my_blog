@@ -43,9 +43,20 @@ ENDSTRING
   describe "#preview" do
     
     it "returns the first 100 characters of the article's content" do
-      
       article = build(:article, content: 'a' * 150)
       expect(article.preview).to eq ('a' * 100 + '...')
+    end
+    
+  end
+  
+  describe "default scope" do
+    
+    it "returns articles sorted from youngest to oldest" do
+      @article1 = create(:article)
+      @article2 = create(:other_article)
+      @article3 = create(:article3)
+      expect(Article.all[0]).to eq @article3
+      expect(Article.all[2]).to eq @article1
     end
     
   end
