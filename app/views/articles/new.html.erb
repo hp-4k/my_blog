@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    
+    <div class="col-xs-12 text-center">
+      <h1>New post</h1>
+      <h2><small>you are posting as <%= current_user.name %></small></h2>
+    </div>
+    
+    <div class="col-xs-12 article-form">
+      <%= form_for @article do |f| %>
+        
+        <div class="form-group">
+          <%= f.label :title %>
+          <p>The title will form a part of your blog post's URL.</p>
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :content %>
+          <p>You can use <%= link_to 'Markdown', 'https://daringfireball.net/projects/markdown/' %> to style your post.</p>
+          <%= f.text_area :content, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.submit "Publish", class: 'btn btn-primary' %>
+        </div>
+        
+      <% end %>
+    </div>
+    
+  </div>
+</div>

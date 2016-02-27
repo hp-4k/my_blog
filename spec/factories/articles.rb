@@ -5,6 +5,11 @@ FactoryGirl.define do
     content "Article content"
   end
   
+  factory :invalid_article, class: Article do
+    title nil
+    content nil
+  end
+  
   factory :other_article, class: Article do
     title "Other article title"
     content "Other article content"

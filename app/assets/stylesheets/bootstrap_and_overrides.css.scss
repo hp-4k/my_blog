@@ -40,6 +40,12 @@ h1 {
   font-size: 20px;
 }
 
-.article-content {
+.article-content, .article-form {
   margin-top: 30px;
+}
+
+.article-form {
+  textarea {
+    height: 300px;
+  }
 }

@@ -50,8 +50,114 @@ RSpec.describe ArticlesController, type: :controller do
       expect(assigns(:user)).to eq @user
     end
     
-    it "renders the show view" do
+    it "renders the 'show' view" do
       expect(response).to render_template(:show)
+    end
+    
+  end
+  
+  describe 'GET :new' do
+    
+    before :each do
+      @user = create(:user)
+    end
+    
+    context "when logged in" do
+      
+      before :each do
+        log_in(@user)
+        get :new
+      end
+      
+      it "assigns a blank article to @article" do
+        expect(assigns(:article)).to be_an(Article)
+      end
+      
+      it "renders the 'new' view" do
+        expect(response).to render_template(:new)
+      end
+      
+    end
+    
+    context "when not logged in" do
+      
+      before :each do
+        get :new
+      end
+      
+      it "sets a flash message" do
+        expect(flash).not_to be_empty
+      end
+      
+      it "redirects to the home page" do
+        expect(response).to redirect_to root_url
+      end
+      
+    end
+    
+  end
+  
+  describe "POST :create" do
+    
+    before :each do
+      @user = create(:user)
+    end
+    
+    context "when logged in" do
+    
+      before :each do
+        log_in(@user)
+      end
+    
+      context "with valid parameters" do
+        
+        before :each do
+          post :create, article: attributes_for(:article)
+        end
+        
+        it "creates a new article" do
+          expect(@user.articles.count).to eq 1
+        end
+        
+        it "redirects to the article page" do
+          article = @user.articles.last
+          expect(response).to redirect_to article_url(article.slug)
+        end
+        
+      end
+      
+      context "with invalid parameters" do
+        
+        before :each do
+          post :create, article: attributes_for(:invalid_article)
+        end
+        
+        it "does not create a new article" do
+          expect(@user.articles).to be_empty
+        end
+        
+        it "renders the form again" do
+          expect(response).to render_template(:new)
+        end
+        
+      end
+      
+    end
+    
+    context "when not logged in" do
+      
+      before :each do
+        post :create, article: attributes_for(:article)
+      end
+      
+      it "sets a flash message" do
+        expect(flash).not_to be_empty
+      end
+      
+      it "redirects to the home page" do
+        expect(response).to redirect_to root_url
+      end
+      
     end
     
   end

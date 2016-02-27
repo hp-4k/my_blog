@@ -18,6 +18,7 @@
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
      <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
+          <li><%= link_to 'New post', new_article_path %></li>
           <li><%= link_to 'Sign out', signout_path, method: :delete %></li>
         <% else %>
           <li><%= link_to 'Sign in', root_path %></li>
