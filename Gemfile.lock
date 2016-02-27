@@ -193,6 +193,7 @@ DEPENDENCIES
   high_voltage (~> 2.4.0)
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri
   rails (= 4.2.4)
   redcarpet (~> 2.3.0)
   rspec-rails (~> 3.4)

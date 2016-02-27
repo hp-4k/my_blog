@@ -41,6 +41,9 @@ gem 'friendly_id', '~> 5.1.0'
 # Use redcarpet for parsing Markdown
 gem 'redcarpet', '~> 2.3.0'
 
+# Generate article previews
+gem 'nokogiri'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

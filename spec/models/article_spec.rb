@@ -40,4 +40,14 @@ ENDSTRING
     
   end
   
+  describe "#preview" do
+    
+    it "returns the first 100 characters of the article's content" do
+      
+      article = build(:article, content: 'a' * 150)
+      expect(article.preview).to eq ('a' * 100 + '...')
+    end
+    
+  end
+  
 end
