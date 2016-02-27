@@ -5,4 +5,9 @@ class ArticlesController < ApplicationController
     @articles = @user.articles
   end
   
+  def show
+    @article = Article.find(params[:id])
+    @user = @article.user
+  end
+  
 end

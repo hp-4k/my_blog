@@ -7,7 +7,7 @@ class Article < ActiveRecord::Base
   def html_content
     renderer = Redcarpet::Render::HTML.new(filter_html: true)
     markdown = Redcarpet::Markdown.new(renderer, autolink: true, tables: true)
-    markdown.render(content)
+    markdown.render(content).html_safe
   end
   
   def preview
