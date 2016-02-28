@@ -4,6 +4,7 @@
     <div class="col-xs-12 text-center">
       <h1><%= @article. title %></h1>
       <h2><small><%= time_ago_in_words(@article.created_at) %> ago by <%= link_to @user.name, articles_for_user_path(@user.slug) %></small></h2>
+      <%= render 'owner_links' %>
     </div>
   </div>
   

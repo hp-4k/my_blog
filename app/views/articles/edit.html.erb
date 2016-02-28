@@ -2,8 +2,8 @@
   <div class="row">
     
     <div class="col-xs-12 text-center">
-      <h1>New post</h1>
-      <h2><small>you are posting as <%= current_user.name %></small></h2>
+      <h1><%= @article.title.length > 0 ? @article.title : '<empty title>' %></h1>
+      <h2><small>you are now edditing this post</small></h2>
     </div>
     
     <%= render 'article_form' %>

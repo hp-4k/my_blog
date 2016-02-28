@@ -1,0 +1,25 @@
+<div class="col-xs-12 article-form">
+  
+  <%= render partial: 'shared/errors', locals: { subject: @article } %>
+  
+  <%= form_for @article do |f| %>
+    
+    <div class="form-group">
+      <%= f.label :title %>
+      <p>The title will form a part of your blog post's URL.</p>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :content %>
+      <p>You can use <%= link_to 'Markdown', 'https://daringfireball.net/projects/markdown/' %> to style your post.</p>
+      <%= f.text_area :content, class: 'form-control' %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.submit @article.new_record? ? "Publish" : "Update", class: 'btn btn-primary' %>
+    </div>
+    
+  <% end %>
+</div>
+    

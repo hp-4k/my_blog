@@ -162,4 +162,147 @@ RSpec.describe ArticlesController, type: :controller do
     
   end
   
+  describe "GET :edit" do
+    
+    before :each do
+      @user = create(:user)
+      @article = @user.articles.create(attributes_for(:article))
+    end
+    
+    context "when not logged in" do
+      
+      before :each do
+        get :edit, id: @article.slug
+      end
+      
+      it "sets a flash message" do
+        expect(flash).not_to be_empty
+      end
+      
+      it "redirects to the home page" do
+        expect(response).to redirect_to root_url
+      end
+      
+    end
+    
+    context "when logged in as a wrong user" do
+    
+      before :each do
+        @other_user = create(:other_user)
+        log_in(@other_user)
+        get :edit, id: @article.slug
+      end
+    
+      it "sets a flash message" do
+        expect(flash).not_to be_empty
+      end
+      
+      it "redirects to the home page" do
+        expect(response).to redirect_to root_url
+      end
+      
+    end
+    
+    context "when logged in as the author user" do
+      
+      before :each do
+        log_in(@user)
+        get :edit, id: @article.slug
+      end
+      
+      it "assign the article to @article" do
+        expect(assigns(:article)).to eq @article
+      end
+      
+      it "renders the 'edit' view" do
+        expect(response).to render_template(:edit)
+      end
+      
+    end
+    
+  end
+  
+  describe "PATCH :update" do
+    
+    before :each do
+      @user = create(:user)
+      @article = @user.articles.create(attributes_for(:article))
+    end
+    
+    context "when not logged in" do
+      
+      before :each do
+        patch :update, id: @article.slug, article: attributes_for(:article, content: '# new content')
+      end
+      
+      it "sets a flash message" do
+        expect(flash).not_to be_empty
+      end
+      
+      it "redirects to the home page" do
+        expect(response).to redirect_to root_url
+      end 
+      
+    end
+    
+    context "when logged in as a wrong user" do
+      
+      before :each do
+        @other_user = create(:other_user)
+        log_in(@other_user)
+        patch :update, id: @article.slug,  article: attributes_for(:article, content: '# new content')
+      end
+      
+      it "sets a flash message" do
+        expect(flash).not_to be_empty
+      end
+      
+      it "redirects to the home page" do
+        expect(response).to redirect_to root_url
+      end
+      
+    end
+    
+    context "when logged in as the author user" do
+      
+      before :each do
+        log_in(@user)
+      end
+      
+      context "with valid parameters" do
+        
+        before :each do
+          patch :update, id: @article.slug,  article: attributes_for(:article, title: 'new title', content: '# new content')
+        end
+        
+        it "updates the article's contents" do
+          expect(@article.reload.content).to eq '# new content'
+        end
+        
+        it "sets a flash message" do
+          expect(flash).not_to be_empty        
+        end
+        
+        it "redirects to the article page" do
+          expect(response).to redirect_to article_url(@article.slug)
+        end
+      
+      end
+      
+      context "with invalid parameters" do
+        
+        before :each do
+          patch :update, id: @article.slug,  article: attributes_for(:invalid_article)
+        end
+        
+        it "renders the 'edit' view" do
+          expect(response).to render_template(:edit)  
+        end
+        
+      end
+      
+    end
+    
+  end
+  
 end
