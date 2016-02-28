@@ -8,10 +8,10 @@ class CommentsController < ApplicationController
     @comment = article.comments.new(comment_params)
     if @comment.save
       flash[:success] = 'Your comment is now visible'
-      redirect_to article_url(article.slug)
     else
-      render 'articles/show', id: article.slug
+      flash[:danger] = 'Name and content are required.'
     end
+    redirect_to :back
   end
   
   def destroy

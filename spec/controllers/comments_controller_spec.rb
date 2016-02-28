@@ -7,6 +7,7 @@ RSpec.describe CommentsController, type: :controller do
     before :each do
       user = create(:user)
       @article = user.articles.create(attributes_for(:article))
+      request.env["HTTP_REFERER"] = 'original_page'
     end
     
     context "with invalid params" do
@@ -20,7 +21,7 @@ RSpec.describe CommentsController, type: :controller do
       end
       
       it "renders the article view" do
-        expect(response).to render_template('articles/show')
+        expect(response).to redirect_to 'original_page'
       end
       
     end
@@ -40,7 +41,7 @@ RSpec.describe CommentsController, type: :controller do
       end
       
       it "redirects to the article commented on" do
-        expect(response).to redirect_to article_url(@article.slug)
+        expect(response).to redirect_to 'original_page'
       end
       
     end

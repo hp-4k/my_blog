@@ -1,17 +1,26 @@
 Rails.application.routes.draw do
   
+  # home page
   root 'high_voltage/pages#show', id: 'home'
-  get '/signup' => 'users#new'
+  
+  # sessions
   post '/signin' => 'sessions#create'
   delete '/signout' => 'sessions#destroy'
   
+  # users
+  get '/signup' => 'users#new'
   resources :users, only: [:create]
   
+  # articles
   get '/users/:id' => 'articles#index', as: 'articles_for_user'
-  
   resources :articles, except: [:index]
   
+  # comments
   resources :comments, only: [:create, :destroy]
+  
+  # subscriptions
+  resources :subscribers, only: [:create]
+  get '/unsubscribe' => 'subscribers#unsubscribe'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

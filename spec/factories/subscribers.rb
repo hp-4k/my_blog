@@ -1,8 +1,12 @@
 FactoryGirl.define do
+  
   factory :subscriber do
-    user_id 1
     email "foo@bar.baz"
     unsubscribe_token nil
+  end
+  
+  factory :invalid_subscriber, class: Subscriber do
+    email 'bad'
   end
 
 end
