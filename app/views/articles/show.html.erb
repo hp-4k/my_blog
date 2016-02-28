@@ -9,8 +9,40 @@
   </div>
   
   <div class="row">
-    <div class="col-xs-12 article-content">
+    <article class="col-xs-12 article-content">
       <%= @article.html_content %>
+    </article>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-12 comments">
+      <h2>Comments</h2>
+      <% if @article.comments.any? %>
+        <%= render @article.comments %>
+      <% else %>
+        <p>This article hasn't been commented yet.</p>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="row comments-form">
+    <div class="col-sm-6">
+      <h3>Add a comment</h3>
+      <%= form_tag comments_path do %>
+        <%= hidden_field_tag 'article', @article.slug %>
+        <div class="form-group">
+          <%= label_tag 'comment[commenter]', 'Name' %>
+          <%= text_field_tag 'comment[commenter]', nil, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= label_tag 'comment[body]', 'Comment' %>
+          <%= text_area_tag 'comment[body]', nil, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+        <%= submit_tag 'Comment', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
     </div>
   </div>
   

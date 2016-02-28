@@ -10,6 +10,7 @@ $topbar-height: 40px;
 
 body {
   font-family: "Montserrat", sans-serif;
+  padding-bottom: 40px;
 }
 
 h1 {
@@ -48,4 +49,23 @@ h1 {
   textarea {
     height: 300px;
   }
+}
+
+.comments, .comments-form {
+  background-color: #eee;
+}
+
+.comments {
+  margin-top: 20px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  .comment {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+}
+
+.comments-form {
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }

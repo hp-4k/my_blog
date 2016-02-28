@@ -3,6 +3,7 @@ class Article < ActiveRecord::Base
   friendly_id :title, use: :slugged
   
   belongs_to :user
+  has_many :comments, dependent: :destroy
   
   validates :title, presence: true, uniqueness: true
   validates :content, presence: true
