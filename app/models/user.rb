@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   friendly_id :name, use: :slugged
   
   has_many :articles
+  has_many :subscribers
   
   has_secure_password
   

@@ -31,5 +31,6 @@ RSpec.describe User, type: :model do
   
   # associations
   it { is_expected.to have_many :articles }
+  it { is_expected.to have_many :subscribers }
   
 end
