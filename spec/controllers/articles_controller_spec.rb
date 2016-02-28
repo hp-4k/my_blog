@@ -305,4 +305,68 @@ RSpec.describe ArticlesController, type: :controller do
     
   end
   
+  describe "DELETE :destroy" do
+    
+    before :each do
+      @user = create(:user)
+      @article = @user.articles.create(attributes_for(:article))
+    end
+    
+    context "when not logged in" do
+      
+      before :each do
+        delete :destroy, id: @article.slug
+      end
+      
+      it "sets a flash message" do
+        expect(flash).not_to be_empty
+      end
+      
+      it "redirects to the home page" do
+        expect(response).to redirect_to root_url
+      end 
+      
+    end
+    
+    context "when logged in as a wrong user" do
+
+      before :each do
+        @other_user = create(:other_user)
+        log_in(@other_user)
+        delete :destroy, id: @article.slug
+      end
+      
+      it "sets a flash message" do
+        expect(flash).not_to be_empty
+      end
+      
+      it "redirects to the home page" do
+        expect(response).to redirect_to root_url
+      end
+      
+    end
+    
+    context "when logged in" do
+      
+      before :each do
+        log_in(@user)
+        delete :destroy, id: @article.slug
+      end
+      
+      it "deletes the article" do
+        expect(@user.articles.count).to eq 0
+      end
+      
+      it "sets a flash message" do
+        expect(flash).not_to be_empty
+      end
+      
+      it "redirects to user's articles" do
+        expect(response).to redirect_to articles_for_user_url(@user.slug)
+      end
+      
+    end
+    
+  end
+  
 end

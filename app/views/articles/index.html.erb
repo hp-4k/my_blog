@@ -7,8 +7,12 @@
   
   <% @articles.each do |article| %>
     <h2><%= article.title %> <small><%= time_ago_in_words(article.created_at) %> ago</small></h2>
-    <p><%= article.preview %> <%= link_to 'Read more', article_path(article.slug) %></p>
+    <p><%= article.preview %> <%= link_to 'Read more', article_path(article.slug) %>
+      <% if current_user?(@user) %>
+        | <%= link_to 'Edit', edit_article_path(article.slug) %>
+        | <%= link_to 'Delete', article_path(article.slug), method: :delete, data: { confirm: "Are you sure? This operation can't be undone." } %>
+      <% end %>
+    </p>
   <% end %>
   
 </div>
-

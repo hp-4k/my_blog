@@ -1,3 +1,4 @@
 <% if current_user?(@user) %>
-  <p>You are the owner of this post | <%= link_to 'Edit it', edit_article_path(@article.slug) %> | <%= link_to 'Delete it', '#' %></p>
+  <p>You are the owner of this post | <%= link_to 'Edit it', edit_article_path(@article.slug) %> |
+     <%= link_to 'Delete it', article_path(@article.slug), method: :delete, data: { confirm: "Are you sure? This operation can't be undone." } %></p>
 <% end %>

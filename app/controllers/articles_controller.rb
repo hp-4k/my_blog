@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   
-  before_action :require_login, only: [:new, :create, :edit, :update]
-  before_action :require_author, only: [:edit, :update]
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_author, only: [:edit, :update, :destroy]
   
   def index
     @user = User.friendly.find(params[:id])
@@ -38,6 +38,14 @@ class ArticlesController < ApplicationController
     else
       render :edit
     end
+  end
+  
+  def destroy
+    article = Article.friendly.find(params[:id])
+    user = article.user
+    article.destroy
+    flash[:success] = 'Your post has been deleted.'
+    redirect_to articles_for_user_url(user.slug)
   end
   
   private
