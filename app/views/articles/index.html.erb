@@ -5,14 +5,26 @@
     </div>
   </div>
   
-  <% @articles.each do |article| %>
-    <h2><%= article.title %> <small><%= time_ago_in_words(article.created_at) %> ago</small></h2>
-    <p><%= article.preview %> <%= link_to 'Read more', article_path(article.slug) %>
-      <% if current_user?(@user) %>
-        | <%= link_to 'Edit', edit_article_path(article.slug) %>
-        | <%= link_to 'Delete', article_path(article.slug), method: :delete, data: { confirm: "Are you sure? This operation can't be undone." } %>
-      <% end %>
-    </p>
+  <% if @articles.any? %>
+    <div class="row">
+      <div class="col-xs-12">
+        <% @articles.each do |article| %>
+          <h2><%= article.title %> <small><%= time_ago_in_words(article.created_at) %> ago</small></h2>
+          <p><%= article.preview %> <%= link_to 'Read more', article_path(article.slug) %>
+            <% if current_user?(@user) %>
+              | <%= link_to 'Edit', edit_article_path(article.slug) %>
+              | <%= link_to 'Delete', article_path(article.slug), method: :delete, data: { confirm: "Are you sure? This operation can't be undone." } %>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <p><%= @user.name %> has not written any posts yet.</p>
+      </div>
+    </div>
   <% end %>
 
   <%= render 'subscription_form' %>

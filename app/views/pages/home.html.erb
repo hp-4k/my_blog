@@ -20,25 +20,38 @@
     
     <div class="col-md-2"></div>
     
-    <div class="col-md-5 text-center">
-      <%= form_tag signin_path do %>
-        <div class="form-group">
-          <%= label_tag 'session[email]', 'Email' %>
-          <%= text_field_tag 'session[email]', nil, class: 'form-control' %>
-        </div>
-        
-        <div class="form-group">
-          <%= label_tag 'session[password]', 'Password' %>
-          <%= password_field_tag 'session[password]', nil, class: 'form-control' %>
-        </div>
-        
-        <div class="form-group">
-          <%= submit_tag 'Sign in', class: 'btn btn-primary' %>
-        </div>
-        
-      <% end %>
-      <p>Don't have an account? <%= link_to 'Sign up.', signup_path %></p>
-    </div>
+    <% if logged_in? %>
+    
+      <div class="col-md-5 text-center">
+        <h3>Welcome back <%= current_user.name %></h3>
+        <p><%= link_to 'View your posts', articles_for_user_path(current_user.slug) %></p>
+        <p><%= link_to 'Write a new post', new_article_path %></p>
+        <p><%= link_to 'Sign out', signout_path, method: :delete %></p>
+      </div>
+    
+    <% else %>
+      
+      <div class="col-md-5 text-center">
+        <%= form_tag signin_path do %>
+          <div class="form-group">
+            <%= label_tag 'session[email]', 'Email' %>
+            <%= text_field_tag 'session[email]', nil, class: 'form-control' %>
+          </div>
+          
+          <div class="form-group">
+            <%= label_tag 'session[password]', 'Password' %>
+            <%= password_field_tag 'session[password]', nil, class: 'form-control' %>
+          </div>
+          
+          <div class="form-group">
+            <%= submit_tag 'Sign in', class: 'btn btn-primary' %>
+          </div>
+          
+        <% end %>
+        <p>Don't have an account? <%= link_to 'Sign up.', signup_path %></p>
+      </div>
+      
+    <% end %>
   </div>
       
 </div>
