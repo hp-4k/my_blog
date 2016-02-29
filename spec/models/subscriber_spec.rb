@@ -10,7 +10,8 @@ RSpec.describe Subscriber, type: :model do
   # email validations
   it { is_expected.to validate_presence_of(:email) }
   it { is_expected.to validate_uniqueness_of(:email).scoped_to(:user_id)
-    .with_message('is already subscribed to this user')}
+    .with_message('is already subscribed to this user')
+    .case_insensitive }
   it { is_expected.to allow_values(
     "user@example.com",
     "USER@foo.COM",
