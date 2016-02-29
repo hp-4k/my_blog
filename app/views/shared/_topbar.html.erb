@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Blogger</a>
+      <%= link_to 'Blogger', root_path, class: 'navbar-brand' %>
       <% if logged_in? %>
         <p class="navbar-text">Signed in as <%= current_user.name %></p>
       <% end %>
@@ -18,6 +18,7 @@
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
      <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
+          <li><%= link_to 'My posts', articles_for_user_path(current_user) %></li>
           <li><%= link_to 'New post', new_article_path %></li>
           <li><%= link_to 'Sign out', signout_path, method: :delete %></li>
         <% else %>
