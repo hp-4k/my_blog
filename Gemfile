@@ -44,6 +44,9 @@ gem 'redcarpet', '~> 2.3.0'
 # Generate article previews
 gem 'nokogiri'
 
+# Create asynchronous jobs to send emails
+gem 'sidekiq'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -63,6 +66,9 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+  
+  # Catch emails in development
+  gem 'mailcatcher'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

@@ -1,0 +1,3 @@
+<p>Dear Subscriber,</p>
+<p>This message is a notification that a new article, <%= @article.title %>, was published by <%=@user.name %>. You can access it <%= link_to 'here', article_url(@article.slug) %>.</p>
+<p>If you don't want to receive these emails click this link to <%= link_to 'unsubscribe', unsubscribe_url(id: @subscriber.id, token: @subscriber.unsubscribe_token) %>.</p>

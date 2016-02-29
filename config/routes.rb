@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   
   # subscriptions
   resources :subscribers, only: [:create]
-  get '/unsubscribe' => 'subscribers#unsubscribe'
+  get '/unsubscribe' => 'subscribers#unsubscribe', as: 'unsubscribe'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

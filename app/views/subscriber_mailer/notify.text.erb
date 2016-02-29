@@ -1,0 +1,5 @@
+Dear Subscriber,
+
+This message is a notification that a new article, <%= @article.title %>, was published by <%=@user.name %>. You can access it at <%= article_url(@article.slug) %>.
+
+If you don't want to receive these emails click this link or copy it into your browser's window: <%= unsubscribe_url(id: @subscriber.id, token: @subscriber.unsubscribe_token) %>

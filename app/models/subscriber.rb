@@ -4,7 +4,7 @@ class Subscriber < ActiveRecord::Base
   belongs_to :user
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, uniqueness: { scope: :user_id },
+  validates :email, presence: true, uniqueness: { scope: :user_id, message: 'is already subscribed to this user' },
     format: { with: VALID_EMAIL_REGEX }
   
   private

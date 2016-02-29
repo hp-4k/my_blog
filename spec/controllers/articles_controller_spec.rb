@@ -111,15 +111,18 @@ RSpec.describe ArticlesController, type: :controller do
     
       context "with valid parameters" do
         
-        before :each do
-          post :create, article: attributes_for(:article)
-        end
-        
         it "creates a new article" do
+          post :create, article: attributes_for(:article)
           expect(@user.articles.count).to eq 1
         end
         
+        it "sends emails to all subscribers" do
+          expect { post :create, article: attributes_for(:article) }
+            .to change(NotificationsWorker.jobs, :size).by(1)
+        end
+        
         it "redirects to the article page" do
+          post :create, article: attributes_for(:article)
           article = @user.articles.last
           expect(response).to redirect_to article_url(article.slug)
         end
